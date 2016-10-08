@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008184717) do
+ActiveRecord::Schema.define(version: 20161008191815) do
+
+  create_table "robot_infos", force: :cascade do |t|
+    t.float    "battery"
+    t.float    "temperature"
+    t.float    "humidity"
+    t.float    "water"
+    t.string   "position"
+    t.integer  "robot_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "robot_infos", ["robot_id"], name: "index_robot_infos_on_robot_id"
 
   create_table "robots", force: :cascade do |t|
     t.integer  "status"
