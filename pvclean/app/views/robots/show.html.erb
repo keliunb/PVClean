@@ -9,6 +9,6 @@
   <strong>Identifier:</strong>
   <%= @robot.identifier %>
 </p>
-
+<%= render partial: 'robot_infos/show' %>
 <%= link_to 'Edit', edit_robot_path(@robot) %> |
 <%= link_to 'Back', robots_path %>

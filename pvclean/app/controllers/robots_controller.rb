@@ -10,6 +10,9 @@ class RobotsController < ApplicationController
   # GET /robots/1
   # GET /robots/1.json
   def show
+    robot_infos = @robot.robot_infos
+
+    @robot_info = robot_infos.last unless robot_infos.empty? 
   end
 
   # GET /robots/new

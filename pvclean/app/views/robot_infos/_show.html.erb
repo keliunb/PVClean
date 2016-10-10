@@ -1,0 +1,14 @@
+<% if @robot_info.nil? %>
+	Não encontrado 
+<%else%>
+	<strong>Bateria: </strong>
+	<%= @robot_info.battery %><p>
+	<strong>Temperatura: </strong>
+	<%= @robot_info.temperature %><p>
+	<strong>Umidade: </strong>
+   	<%= @robot_info.humidity %> <p>
+   	<strong>Água: </strong>
+    <%= @robot_info.water %><p>
+    <strong>Posição: </strong>
+	<%= @robot_info.position %><p>
+<%end%>
