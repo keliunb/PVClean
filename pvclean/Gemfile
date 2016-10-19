@@ -29,7 +29,16 @@ gem 'therubyracer'  # If using Ruby
 gem 'therubyrhino'  # If using JRuby
 gem 'less-rails-bootstrap'
 gem 'glyphicons-rails', '~> 0.1.2'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'sprockets', '3.6.3'
+
+# authentication
+gem 'devise'
+gem 'cancancan'
+gem 'rolify'
+
+# easier logs
+gem 'lograge'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

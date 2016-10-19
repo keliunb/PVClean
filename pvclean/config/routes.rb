@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :usuarios
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'entrar' => 'devise/sessions#new', :as => :new_user_session
+    post 'entrar' => 'devise/sessions#create', :as => :user_session
+    delete 'sair' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+  resources :users
   root 'static_pages#index'
+  get '*unmatched_route', to: 'static_pages#route_not_found'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
