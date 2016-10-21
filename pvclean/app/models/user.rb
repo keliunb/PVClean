@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  validates_presence_of :name
   after_create :assign_default_role
   rolify
   resourcify

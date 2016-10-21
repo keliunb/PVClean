@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, :path_prefix => 'my'
-  resources :users
+  #devise_for :users, :path_prefix => 'my'
+  #resources :users
+  devise_for :users
+  scope "/admin" do
+    resources :users
+  end
   root 'static_pages#index'
   get '*unmatched_route', to: 'static_pages#route_not_found'
   # The priority is based upon order of creation: first created -> highest priority.

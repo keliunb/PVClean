@@ -20,6 +20,8 @@ h6 {
     font-weight: 700;
 }
 
+body { padding-top: 40px; }
+
 .topnav {
     font-size: 14px;
 }
@@ -37,6 +39,16 @@ h6 {
     background: url(inicio.jpg) no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
+    position: relative;
+}
+
+.intro-registration{
+    padding-top: 175px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(we_want_you.jpg) no-repeat center center;
+    position: relative;
 }
 
 .intro-message {

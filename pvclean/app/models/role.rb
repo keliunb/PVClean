@@ -3,8 +3,6 @@ class Role < ActiveRecord::Base
 
   belongs_to :resource,
              :polymorphic => true
-             #:optional => true
-             # optional only supported in rails 5 and above
 
   validates :resource_type,
             :inclusion => { :in => Rolify.resource_types },
