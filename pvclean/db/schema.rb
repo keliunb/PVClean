@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022212056) do
+ActiveRecord::Schema.define(version: 20161022224533) do
 
   create_table "robot_infos", force: :cascade do |t|
     t.float    "battery"
@@ -49,6 +49,26 @@ ActiveRecord::Schema.define(version: 20161022212056) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "routine_results", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "result"
+    t.integer  "routine_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "routine_results", ["routine_id"], name: "index_routine_results_on_routine_id"
+
+  create_table "routines", force: :cascade do |t|
+    t.time     "time"
+    t.integer  "week_day"
+    t.integer  "routine_control_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "routines", ["routine_control_id"], name: "index_routines_on_routine_control_id"
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "code"

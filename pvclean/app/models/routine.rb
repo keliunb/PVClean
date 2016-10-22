@@ -1,4 +1,4 @@
 class Routine < ActiveRecord::Base
 	belongs_to :routine_control
-	has_many :results
+	has_many :routine_results
 end
