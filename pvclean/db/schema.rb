@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008191815) do
+ActiveRecord::Schema.define(version: 20161022202537) do
 
   create_table "robot_infos", force: :cascade do |t|
     t.float    "battery"
@@ -29,6 +29,23 @@ ActiveRecord::Schema.define(version: 20161008191815) do
   create_table "robots", force: :cascade do |t|
     t.integer  "status"
     t.string   "identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "robots_routine_controls", force: :cascade do |t|
+    t.integer  "robot_id"
+    t.integer  "routine_control_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "robots_routine_controls", ["robot_id"], name: "index_robots_routine_controls_on_robot_id"
+  add_index "robots_routine_controls", ["routine_control_id"], name: "index_robots_routine_controls_on_routine_control_id"
+
+  create_table "routine_controls", force: :cascade do |t|
+    t.boolean  "enabled"
+    t.boolean  "monthly"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
