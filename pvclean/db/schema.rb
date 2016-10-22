@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022202537) do
+ActiveRecord::Schema.define(version: 20161022212056) do
 
   create_table "robot_infos", force: :cascade do |t|
     t.float    "battery"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 20161022202537) do
     t.boolean  "monthly"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "code"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

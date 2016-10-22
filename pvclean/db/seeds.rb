@@ -4,4 +4,14 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   Mayor.create(name: 'Emanuel', city: cities.first)[]
+fixture = [{code: 1, description: "get battery"},
+	{code:2, description: "clean glass"},
+	{code: 3, description: "get water"}
+]
+print "Criando tasks:"
+fixture.each do |task|
+	print "."
+	Task.create(task)
+end
+puts ""
