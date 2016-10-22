@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Enabled:</strong>
+  <%= @routine_control.enabled %>
+</p>
+
+<p>
+  <strong>Monthly:</strong>
+  <%= @routine_control.monthly %>
+</p>
+
+<%= link_to 'Edit', edit_routine_control_path(@routine_control) %> |
+<%= link_to 'Back', routine_controls_path %>

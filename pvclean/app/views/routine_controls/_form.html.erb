@@ -1,0 +1,25 @@
+<%= form_for(@routine_control) do |f| %>
+  <% if @routine_control.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@routine_control.errors.count, "error") %> prohibited this routine_control from being saved:</h2>
+
+      <ul>
+      <% @routine_control.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :enabled %><br>
+    <%= f.check_box :enabled %>
+  </div>
+  <div class="field">
+    <%= f.label :monthly %><br>
+    <%= f.check_box :monthly %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
