@@ -10,5 +10,12 @@
   <%= @routine_control.monthly %>
 </p>
 
+<h2> Robots in this routine </h2>
+
+<uL>
+	<% @robots.each do |robot| %>
+		<li><%= link_to robot.identifier, robot_path(robot) %></li>
+	<% end %>
+</uL>
 <%= link_to 'Edit', edit_routine_control_path(@routine_control) %> |
 <%= link_to 'Back', routine_controls_path %>

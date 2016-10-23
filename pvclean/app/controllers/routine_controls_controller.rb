@@ -1,6 +1,6 @@
 class RoutineControlsController < ApplicationController
   before_action :set_routine_control, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_robots, only: [:new, :create,:edit,:update]
   # GET /routine_controls
   # GET /routine_controls.json
   def index
@@ -10,6 +10,7 @@ class RoutineControlsController < ApplicationController
   # GET /routine_controls/1
   # GET /routine_controls/1.json
   def show
+    @robots = @routine_control.robots
   end
 
   # GET /routine_controls/new
@@ -69,6 +70,10 @@ class RoutineControlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def routine_control_params
-      params.require(:routine_control).permit(:enabled, :monthly)
+      params.require(:routine_control).permit(:enabled, :monthly,robot_ids: [])
     end
+
+  def set_robots
+    @robots ||= Robot.all
+  end
 end

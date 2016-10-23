@@ -19,6 +19,13 @@
     <%= f.label :monthly %><br>
     <%= f.check_box :monthly %>
   </div>
+  <%= f.collection_check_boxes :robot_ids, @robots, :id, :identifier do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
