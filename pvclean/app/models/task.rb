@@ -1,7 +1,7 @@
 require 'socket'
 require 'json'
 class Task < ActiveRecord::Base
-	def send
+	def send_data
 		host='localhost'
 		port='6002'
 		server = TCPSocket.open(host,port)

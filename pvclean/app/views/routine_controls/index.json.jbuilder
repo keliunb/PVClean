@@ -1,1 +1,0 @@
-json.array! @routine_controls, partial: 'routine_controls/routine_control', as: :routine_control

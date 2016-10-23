@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023172520) do
+ActiveRecord::Schema.define(version: 20161023215627) do
 
   create_table "robot_infos", force: :cascade do |t|
     t.float    "battery"
@@ -33,22 +33,13 @@ ActiveRecord::Schema.define(version: 20161023172520) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "robots_routine_controls", force: :cascade do |t|
-    t.integer  "robot_id"
-    t.integer  "routine_control_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+  create_table "robots_routines", force: :cascade do |t|
+    t.integer "robot_id"
+    t.integer "routine_id"
   end
 
-  add_index "robots_routine_controls", ["robot_id"], name: "index_robots_routine_controls_on_robot_id"
-  add_index "robots_routine_controls", ["routine_control_id"], name: "index_robots_routine_controls_on_routine_control_id"
-
-  create_table "routine_controls", force: :cascade do |t|
-    t.boolean  "enabled"
-    t.boolean  "monthly"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "robots_routines", ["robot_id"], name: "index_robots_routines_on_robot_id"
+  add_index "robots_routines", ["routine_id"], name: "index_robots_routines_on_routine_id"
 
   create_table "routine_results", force: :cascade do |t|
     t.datetime "date"
@@ -62,9 +53,9 @@ ActiveRecord::Schema.define(version: 20161023172520) do
 
   create_table "routines", force: :cascade do |t|
     t.time     "time"
-    t.integer  "routine_control_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "week_day"
+    t.boolean  "enable"
+    t.boolean  "monthly"
     t.boolean  "sunday"
     t.boolean  "monday"
     t.boolean  "tuesday"
@@ -72,9 +63,9 @@ ActiveRecord::Schema.define(version: 20161023172520) do
     t.boolean  "thursday"
     t.boolean  "friday"
     t.boolean  "saturday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "routines", ["routine_control_id"], name: "index_routines_on_routine_control_id"
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "code"

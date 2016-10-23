@@ -11,7 +11,22 @@ fixture = [{code: 1, description: "get battery"},
 ]
 print "Criando tasks:"
 fixture.each do |task|
-	print "."
-	Task.create(task)
+  print "."
+  Task.create(task)
 end
 puts ""
+print 'Criando robots: '
+
+10.times do |k|
+  Robot.create(identifier: (100000-k).to_s, status: k%10)
+  print '.'
+
+end
+puts ""
+print "Criando routines: "
+10.times do |k|
+  Routine.create(enable:true, monthly: true, time: Time.now)
+  print '.'
+end
+puts ""
+
