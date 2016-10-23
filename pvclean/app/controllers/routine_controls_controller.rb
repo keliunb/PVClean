@@ -43,6 +43,7 @@ class RoutineControlsController < ApplicationController
   def update
     respond_to do |format|
       if @routine_control.update(routine_control_params)
+        @routine_control.update_routine(week_days_params)
         format.html { redirect_to @routine_control, notice: 'Routine control was successfully updated.' }
         format.json { render :show, status: :ok, location: @routine_control }
       else
@@ -72,8 +73,18 @@ class RoutineControlsController < ApplicationController
     def routine_control_params
       params.require(:routine_control).permit(:enabled, :monthly,robot_ids: [])
     end
+    def week_days_params
+      params.require(:week).permit(:sunday,:monday, :tuesday, :wednesday, 
+                            :thursday, :friday, :saturday)
+    end
 
   def set_robots
+    @week_days = RoutineControl::WEEK_DAYS
+    @checked_days = {}
+    unless @routine_control.nil?
+      routine = @routine_control.routines.first 
+      @checked_days = routine.get_enable_days 
+    end
     @robots ||= Robot.all
   end
 end

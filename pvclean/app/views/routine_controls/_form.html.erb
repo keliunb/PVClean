@@ -25,6 +25,12 @@
       <%= b.label %>
     </div>
   <% end %>
+  <% @week_days.each do |day| %>
+    <%= f.label day %>
+    <%= check_box :week,day,{checked: @checked_days[day.to_sym]}, 'true','false'  %>
+  <% end %>
+
+  <%= time_select :routines, :time %>
 
   <div class="actions">
     <%= f.submit %>
