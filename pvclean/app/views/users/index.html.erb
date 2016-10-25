@@ -36,3 +36,19 @@
 
 <%= link_to 'New User', new_user_path %>
 
+<td>
+                        <% if can? :manage, :all %>
+                            <%= link_to 'ADMIN', root_url %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <% if can? :read, User %>
+                            <%= link_to 'USER', root_url %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <% if cannot? :read, User %>
+                            <%= link_to 'NAO_LOGADO', root_url %>
+                        <% end %>
+                    </td>
+

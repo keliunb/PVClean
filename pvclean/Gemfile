@@ -35,7 +35,6 @@ gem 'sprockets', '3.6.3'
 # authentication
 gem 'devise'
 gem 'cancancan'
-gem 'rolify', '~> 5.1.0'
 
 # easier logs
 gem 'lograge'

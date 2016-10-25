@@ -10,10 +10,17 @@ class Ability
     #   else
     #     can :read, :all
     #   end
+    guest = User.new
+    guest.role = Role.new
+    guest.role.name = "Regular"
+    user ||= guest # Guest user
     if user.admin?
         can :manage, :all
+        can :manage, Role
+    elsif user.user?
+        can :read, User
     else
-        can :read, :all
+        cannot :read, User
         #cannot :read, Admin page
     end
     # The first argument to `can` is the action you are giving the user
