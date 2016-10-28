@@ -20,6 +20,8 @@ h6 {
     font-weight: 700;
 }
 
+body { padding-top: 40px; }
+
 .topnav {
     font-size: 14px;
 }
@@ -34,8 +36,19 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(teste.jpg) no-repeat center center;
+    background: url(inicio.jpg) no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.intro-registration{
+    padding-top: 175px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(we_want_you.jpg) no-repeat center center;
+    position: relative;
 }
 
 .intro-message {
@@ -115,8 +128,10 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(banner-bg.jpg) no-repeat center center;
+    background: url(fim.jpg) no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.8;
 }
 
 .banner h2 {
@@ -1833,4 +1848,58 @@ p.copyright {
 }
 .fa-meanpath:before {
   content: "\f20c";
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+
+.img-center {
+  margin: 0 auto;
 }

@@ -1,0 +1,112 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+    <div class="container">
+
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+      <fieldset>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="field">
+                <% f.label :name, "Nome" %>
+                <%= f.text_field :name, class: "form-control", autofocus: true, :placeholder => "Nome completo"%>
+              </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <div class="field">
+                  <% f.label :email, "Email"%>
+                  <%= f.email_field :email, class: "form-control", :placeholder => "Email"%>
+                </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
+                <div class="field">
+                  <% f.label :password %>
+                  <% if @minimum_password_length %>
+                  <% end %>
+                  <%= f.password_field :password, autocomplete: "off",class: "form-control", :placeholder => "Senha"%>
+                </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
+                <div class="field">
+                  <% f.label :password_confirmation %>
+                  <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control", :placeholder => "Confirmar Senha"%>
+                </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <div class="field">
+                  <% f.label :birth_date %>
+                  <%= f.date_select :birth_date, {:order => [:day, :month, :year], :start_year => 1920, :end_year => 2013},{class: "input-mini"}%>
+                  <% #to-do: Change the style of the date_select data type, maybe gem calendar_date_select, or maybe http://railscasts.com/episodes/213-calendars %>
+                </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-wrench"></i></span>
+                <div class="field">
+                  <% f.label :occupation %>
+                  <%= f.text_field :occupation, class: "form-control", :placeholder => "Ocupação"%>
+                </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                  <div class="field">
+                    <% f.label :graduation %>
+                    <%= f.text_field :graduation, class: "form-control", :placeholder => "Graduação"%>
+                  </div>
+            </div>
+          </div>
+        </div>
+<br/><br/>
+        <div class="form-group" align="center">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-warning" >Cadastre-se <span class="glyphicon glyphicon-send"></span></button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+
+<%end%>
