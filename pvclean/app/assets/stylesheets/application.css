@@ -131,7 +131,7 @@ body { padding-top: 40px; }
     background: url(fim.jpg) no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
-
+    opacity: 0.8;
 }
 
 .banner h2 {
@@ -1899,3 +1899,7 @@ p.copyright {
         background-color: inherit;
         border-top:0 none;
     }
+
+.img-center {
+  margin: 0 auto;
+}
