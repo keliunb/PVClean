@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @routine.task.description %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @routine.time %>
+</p>
+
+<p>
+  <strong>Enable:</strong>
+  <%= @routine.enable %>
+</p>
+
+<p>
+  <strong>Monthly:</strong>
+  <%= @routine.monthly %>
+</p>
+
+<p>
+  <strong>Sunday:</strong>
+  <%= @routine.sunday %>
+</p>
+
+<p>
+  <strong>Monday:</strong>
+  <%= @routine.monday %>
+</p>
+
+<p>
+  <strong>Tuesday:</strong>
+  <%= @routine.tuesday %>
+</p>
+
+<p>
+  <strong>Wednesday:</strong>
+  <%= @routine.wednesday %>
+</p>
+
+<p>
+  <strong>Thursday:</strong>
+  <%= @routine.thursday %>
+</p>
+
+<p>
+  <strong>Friday:</strong>
+  <%= @routine.friday %>
+</p>
+
+<p>
+  <strong>Saturday:</strong>
+  <%= @routine.saturday %>
+</p>
+
+<h2> Robots</h2>
+<% @robots.each do |robot| %>
+  <strong>Identifier:</strong>
+  <%= robot.identifier %> <br>
+<% end %>
+
+<%= link_to 'Edit', edit_routine_path(@routine) %> |
+<%= link_to 'Back', routines_path %>

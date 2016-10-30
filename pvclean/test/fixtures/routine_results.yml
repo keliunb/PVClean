@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-10-22 20:45:33
+  result: MyString
+  routines_id: 
+
+two:
+  date: 2016-10-22 20:45:33
+  result: MyString
+  routines_id: 

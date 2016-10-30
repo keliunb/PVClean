@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @robot.status %>
+</p>
+
+<p>
+  <strong>Identifier:</strong>
+  <%= @robot.identifier %>
+</p>
+<%= render partial: 'robot_infos/show' %>
+<%= render partial: 'routines/list' %>
+<%= link_to 'Edit', edit_robot_path(@robot) %> |
+<%= link_to 'Back', robots_path %>

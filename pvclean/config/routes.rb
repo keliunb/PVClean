@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get '/sobre' => 'static_pages#about'
   get '*unmatched_route', to: 'static_pages#route_not_found'
+
+  resources :routines
+  resources :robots
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
