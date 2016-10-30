@@ -1,0 +1,16 @@
+<strong>Rotinas: </strong>
+<% @routine.each do |routine| %>
+  <p>
+    <td><%= routine.time %></td>
+    <td><%= routine.enable %></td>
+    <td><%= routine.monthly %></td>
+    <td><%= routine.sunday %></td>
+    <td><%= routine.monday %></td>
+    <td><%= routine.tuesday %></td>
+    <td><%= routine.wednesday %></td>
+    <td><%= routine.thursday %></td>
+    <td><%= routine.friday %></td>
+    <td><%= routine.saturday %></td>
+    <td><%= link_to 'Show', routine %></td>
+  </p>
+<%end%>

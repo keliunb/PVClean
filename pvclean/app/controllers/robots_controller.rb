@@ -13,6 +13,10 @@ class RobotsController < ApplicationController
     robot_infos = @robot.robot_infos
 
     @robot_info = robot_infos.last unless robot_infos.empty? 
+
+    routines = @robot.routines
+
+    @routine = routines unless routines.empty?
   end
 
   # GET /robots/new
