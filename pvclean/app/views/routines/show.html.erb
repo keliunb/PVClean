@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Task:</strong>
+  <%= @routine.task.description %>
+</p>
+
+<p>
   <strong>Time:</strong>
   <%= @routine.time %>
 </p>
@@ -49,6 +54,7 @@
   <strong>Saturday:</strong>
   <%= @routine.saturday %>
 </p>
+
 <h2> Robots</h2>
 <% @robots.each do |robot| %>
   <strong>Identifier:</strong>

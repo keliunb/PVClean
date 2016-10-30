@@ -1,6 +1,7 @@
 <strong>Rotinas: </strong>
 <% @routine.each do |routine| %>
   <p>
+    <td><%= routine.task.description %></td>
     <td><%= routine.time %></td>
     <td><%= routine.enable %></td>
     <td><%= routine.monthly %></td>

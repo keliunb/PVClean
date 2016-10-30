@@ -11,6 +11,7 @@ class RoutinesController < ApplicationController
   # GET /routines/1.json
   def show
     @robots = @routine.robots
+    @task = @routine.task
   end
 
   # GET /routines/new

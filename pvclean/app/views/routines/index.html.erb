@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Task</th>
       <th>Time</th>
       <th>Enable</th>
       <th>Monthly</th>
@@ -22,6 +23,7 @@
   <tbody>
     <% @routines.each do |routine| %>
       <tr>
+        <td><%= routine.task.description %></td>
         <td><%= routine.time %></td>
         <td><%= routine.enable %></td>
         <td><%= routine.monthly %></td>

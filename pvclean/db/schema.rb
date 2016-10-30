@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023215627) do
+ActiveRecord::Schema.define(version: 20161030161207) do
 
   create_table "robot_infos", force: :cascade do |t|
     t.float    "battery"
@@ -65,7 +65,10 @@ ActiveRecord::Schema.define(version: 20161023215627) do
     t.boolean  "saturday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "task_id"
   end
+
+  add_index "routines", ["task_id"], name: "index_routines_on_task_id"
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "code"

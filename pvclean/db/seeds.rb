@@ -9,11 +9,11 @@ fixture = [{code: 1, description: "get battery"},
 	{code:2, description: "clean glass"},
 	{code: 3, description: "get water"}
 ]
-
+tasks =[]
 print "Criando tasks:"
 fixture.each do |task|
   print "."
-  Task.create(task)
+  tasks << Task.create(task)
 end
 
 puts ""
@@ -33,8 +33,17 @@ end
 puts ""
 print "Criando routines: "
 10.times do |k|
-  Routine.create(enable:true, monthly: true, time: Time.now, sunday: true, monday: true, tuesday: true, wednesday:false, thursday: false, friday: true, saturday: false)
+  Routine.create(enable:true,
+	 monthly: true,
+	 time: Time.now,
+	  sunday: true,
+		monday: true,
+		tuesday: true,
+		wednesday:false,
+		thursday: false,
+		friday: true,
+		saturday: false,
+		task: tasks[k%3])
   print '.'
 end
 puts ""
-

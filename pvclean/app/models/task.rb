@@ -1,6 +1,10 @@
+
 require 'socket'
 require 'json'
 class Task < ActiveRecord::Base
+
+	has_many :routines
+
 	def send_data
 		host='localhost'
 		port='6002'
@@ -9,9 +13,9 @@ class Task < ActiveRecord::Base
 		status_returned = server.recv(100)
 		JSON.load(status_returned)
 	end
-	
+
 	def jsonfy
 		{'code':self.code,'description':self.description}.to_json
 	end
-	
+
 end
