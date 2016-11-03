@@ -32,7 +32,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    authorize! :edit, @item
+    authorize! :edit, @robot
+    authorize! :edit, @routine
+    authorize! :edit, @user
   end
 
   # POST /users

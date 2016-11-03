@@ -6,12 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+print 'Criando roles: '
+print "."
 r1 = Role.create({name: "Admin"})
+print "."
 r2 = Role.create({name: "User"})
+print ".\n"
+r3 = Role.create({name: "Guest"})
 
+print 'Criando usuarios: '
 u1 = User.create({name: "Teste", email: "t@e.com", password: "123456", password_confirmation: "123456", occupation: "Ocupação", graduation: "Graduação", role_id: r1.id})
+print "."
 u2 = User.create :name => "Victor", :email => "v@e.com", :password => "123456", :password_confirmation => "123456", :occupation => "Ocupação", :graduation => "Graduação", role_id: r2.id
+print ".\n"
 
 #   Mayor.create(name: 'Emanuel', city: cities.first)[]
 fixture = [{code: 1, description: "get battery"},

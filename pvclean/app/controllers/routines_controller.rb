@@ -1,6 +1,9 @@
 class RoutinesController < ApplicationController
   before_action :set_routine, only: [:show, :edit, :update, :destroy]
   before_action :set_robots, only: [:new, :create, :edit, :update]
+  before_filter :authenticate_user!
+  load_and_authorize_resource
+
   # GET /routines
   # GET /routines.json
   def index

@@ -10,17 +10,23 @@ class Ability
     #   else
     #     can :read, :all
     #   end
-    guest = User.new
-    guest.role = Role.new
-    guest.role.name = "Regular"
-    user ||= guest # Guest user
+    #non_signed = User.new
+    #non_signed.role = Role.new
+    #non_signed.role.name = "Guest"
+    user ||= User.new # Guest user
     if user.admin?
         can :manage, :all
         can :manage, Role
     elsif user.user?
         can :read, User
-    else
+        can :read, Robot
+        can :read, Routine
+    elsif user.guest?
         cannot :read, User
+        cannot :read, Role
+        cannot :read, Robot
+        cannot :read, Routine
+    else cannot :read, :all
         #cannot :read, Admin page
     end
     # The first argument to `can` is the action you are giving the user

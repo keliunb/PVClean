@@ -1,5 +1,7 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  load_and_authorize_resource
 
   # GET /robots
   # GET /robots.json
@@ -12,7 +14,7 @@ class RobotsController < ApplicationController
   def show
     robot_infos = @robot.robot_infos
 
-    @robot_info = robot_infos.last unless robot_infos.empty? 
+    @robot_info = robot_infos.last unless robot_infos.empty?
 
     routines = @robot.routines
 
