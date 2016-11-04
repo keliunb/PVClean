@@ -1,4 +1,4 @@
-<h1 align = "center">Entrar</h1>
+<h1 align = "center">Login</h1>
 
 <div class = "container">
 <div class="col-md-6 col-sm-offset-3" align="center">
@@ -23,8 +23,8 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
               <div class="field">
                 <div class="field">
-                  <% f.label :password, "Senha" %>
-                  <%= f.password_field :password, autocomplete: "off",class: "form-control", :placeholder => "Senha" %>
+                  <% f.label :password, "Password" %>
+                  <%= f.password_field :password, autocomplete: "off",class: "form-control", :placeholder => "Password" %>
                 </div>
               </div>
             </div>
@@ -34,18 +34,18 @@
         <% if devise_mapping.rememberable? -%>
           <div class="field" align="center">
             <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, "Lembrar" %>
+            <%= f.label :remember_me, "Remember" %>
           </div>
         <% end %>
 
         <div class="actions" align="center">
-          <button type="submit" class="btn btn-primary" >Entrar <span class="glyphicon glyphicon-log-in"></span></button>
+          <button type="submit" class="btn btn-primary" >Submit <span class="glyphicon glyphicon-log-in"></span></button>
         </div>
       <% end %>
       <br/>
   <div class="bottom text-center">
-      Não tem cadastro? <br/>
-        <a class="btn btn-warning" href="users/sign_up" >Cadastre-se <span class="glyphicon glyphicon-send"></span></a>
+      Not registered? <br/>
+        <a class="btn btn-warning" href="users/sign_up" >Register <span class="glyphicon glyphicon-send"></span></a>
         <br/>
   </div>
 </div>
