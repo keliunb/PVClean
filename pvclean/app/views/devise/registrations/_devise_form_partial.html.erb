@@ -2,6 +2,11 @@
   <%= devise_error_messages! %>
     <div class="container">
 
+<%= devise_error_messages! %>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
     <form class="well form-horizontal" action=" " method="post"  id="contact_form">
       <fieldset>
 
@@ -103,6 +108,7 @@
           <label class="col-md-4 control-label"></label>
           <div class="col-md-4">
             <button type="submit" class="btn btn-warning" >Cadastre-se <span class="glyphicon glyphicon-send"></span></button>
+            <%= f.submit %>
           </div>
         </div>
       </fieldset>

@@ -24,4 +24,6 @@ class User < ActiveRecord::Base
   def guest?
     self.role.guest == "Guest"
   end
+
+   attr_accessor :email, :password, :password_confirmation, :remember_me
 end

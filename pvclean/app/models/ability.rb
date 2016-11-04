@@ -16,17 +16,17 @@ class Ability
     user ||= User.new # Guest user
     if user.admin?
         can :manage, :all
-        can :manage, Role
-    elsif user.user?
-        can :read, User
-        can :read, Robot
-        can :read, Routine
-    elsif user.guest?
-        cannot :read, User
-        cannot :read, Role
-        cannot :read, Robot
-        cannot :read, Routine
-    else cannot :read, :all
+    #elsif user.user?
+    #    can :read, User
+    #    can :read, Robot
+    #    can :read, Routine
+    else
+        can :crud, User
+    #    can :create, :read, User
+    #    cannot :destroy, :edit, User
+    #    cannot :read, Role
+    #    cannot :read, Robot
+    #    cannot :read, Routine
         #cannot :read, Admin page
     end
     # The first argument to `can` is the action you are giving the user

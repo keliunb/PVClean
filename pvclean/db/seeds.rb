@@ -20,6 +20,8 @@ print "."
 u2 = User.create :name => "Victor", :email => "v@e.com", :password => "123456", :password_confirmation => "123456", :occupation => "Ocupação", :graduation => "Graduação", role_id: r2.id
 print ".\n"
 
+User.create({name: "Aff", email: "a@e.com", password: "123456", password_confirmation: "123456", occupation: "Ocupação", graduation: "Graduação", role_id: r1.id})
+
 #   Mayor.create(name: 'Emanuel', city: cities.first)[]
 fixture = [{code: 1, description: "get battery"},
 	{code:2, description: "clean glass"},
