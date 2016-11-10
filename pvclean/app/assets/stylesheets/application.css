@@ -116,23 +116,30 @@ body { padding-top: 40px; }
     border-bottom: 1px solid #e7e7e7;
 }
 
+.content-section-c {
+    padding: 50px 0;
+    border-top: 1px;
+    border-bottom: 1px;
+}
+
 .section-heading {
     margin-bottom: 30px;
 }
 
 .section-heading-spacer {
-    float: left;
+    float: center;
     width: 200px;
     border-top: 3px solid #e7e7e7;
 }
 
 .banner {
-    padding: 100px 0;
+    padding: 80px 0;
+    background-color: #222222;
     color: #f8f8f8;
-    background: url(fim.jpg) no-repeat center center;
+    background: url(maps.gif) no-repeat center center;
     background-size: cover;
-    background-attachment: fixed;
     opacity: 0.8;
+    background-attachment: fixed;
 }
 
 .banner h2 {
