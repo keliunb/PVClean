@@ -16,7 +16,6 @@ class Ability
     user ||= User.new # Guest user
     if user.admin?
         can :manage, :all
-        can :manage, Role
     elsif user.user?
         can :read, User
         can :read, Robot

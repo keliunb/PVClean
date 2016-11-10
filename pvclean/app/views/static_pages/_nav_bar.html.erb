@@ -26,12 +26,14 @@
                     <li>
                         <a href="/#contact">Contact</a>
                     </li>
-                    <li>
-                        <a href="/robots">Robots</a>
-                    </li>
-                    <li>
-                        <a href="/routines">Routines</a>
-                    </li>
+                    <% if user_signed_in? && (current_user.admin? || current_user.user?) %>
+                      <li>
+                          <a href="/robots">Robots</a>
+                      </li>
+                      <li>
+                          <a href="/routines">Routines</a>
+                      </li>
+                    <% end %>
                     <li>
                         <%= render '/static_pages/edit_registration_devise' %>
                     </li>
