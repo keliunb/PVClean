@@ -11,7 +11,7 @@
               <i class="fa fa-gears fa-2x"></i>
               <span >List of Robots </span>
             </center>
-  
+
           </div>
         <div class="panel-body">
           <% @robots.each do |robot| %>
@@ -27,7 +27,7 @@
                       <%= robot.identifier %>
                     </div>
                     <div>
-                      <i class="fa fa-thumbs-o-up fa-2x"></i> 
+                      <i class="fa fa-thumbs-o-up fa-2x"></i>
                     </div>
                   </div>
                 </div>
@@ -81,27 +81,27 @@
           <div class="panel-body">
             <div class="list-group">
               <a href="#" class="list-group-item">
-                <i class="fa fa-thumbs-o-up fa-fw"></i> Robots actives
+                <i class="fa fa-thumbs-o-up fa-fw"></i> Active robots
                 <span class="pull-right text-muted small"><em>10 robots</em>
                 </span>
               </a>
               <a href="#" class="list-group-item">
-                <i class="fa fa-thumbs-o-down fa-fw"></i> Robots inatives
+                <i class="fa fa-thumbs-o-down fa-fw"></i> Inactive robots
                 <span class="pull-right text-muted small"><em>0 robot</em>
                 </span>
               </a>
             <a href="#" class="list-group-item">
-              <i class="fa fa-spinner fa-fw"></i> Cleanups in the current month 
+              <i class="fa fa-spinner fa-fw"></i> Cleanups in the current month
               <span class="pull-right text-muted small"><em>0</em>
               </span>
               </a>
             <a href="#" class="list-group-item">
-             <center> 
-              <button type="button" class="btn btn-warning btn-circle btn-xl">
+             <center>
+              <button type="button" class="btn btn-danger btn-circle btn-xl">
               <i class="fa fa-times"></i> STOP ALL!
               </button>
               </center>
-            </a>                        
+            </a>
             </div>
             <!-- /.list-group -->
           </div>

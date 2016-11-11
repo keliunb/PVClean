@@ -18,6 +18,8 @@ print 'Criando usuarios: '
 u1 = User.create({name: "Teste", email: "t@e.com", password: "123456", password_confirmation: "123456", occupation: "Ocupação", graduation: "Graduação", role_id: r1.id})
 print "."
 u2 = User.create :name => "Victor", :email => "v@e.com", :password => "123456", :password_confirmation => "123456", :occupation => "Ocupação", :graduation => "Graduação", role_id: r2.id
+print "."
+u3 = User.create({name: "Usuário exemplo", email: "exemplo@email.com", password: "123456", password_confirmation: "123456", occupation: "Operador de Máquinas", graduation: "Engenheiro", role_id: r1.id})
 print ".\n"
 
 #   Mayor.create(name: 'Emanuel', city: cities.first)[]
