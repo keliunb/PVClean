@@ -3,17 +3,18 @@
 
 <div id="wrapper">
   <div id="page-wrapper">
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <center>
-            <i class="fa fa-gears fa-3x"></i>
-            <span >List of Robots </span>
-          </center>
-        </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <center>
+              <i class="fa fa-gears fa-2x"></i>
+              <span >List of Robots </span>
+            </center>
+  
+          </div>
         <div class="panel-body">
-        <% @robots.each do |robot| %>
+          <% @robots.each do |robot| %>
           <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -63,78 +64,93 @@
               </div>
             </div>
           </div>
-        <% end %>  
+          <% end %>
+        </div>
+
       </div>
+
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item">
+                <i class="fa fa-thumbs-o-up fa-fw"></i> Robots actives
+                <span class="pull-right text-muted small"><em>10 robots</em>
+                </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i class="fa fa-thumbs-o-down fa-fw"></i> Robots inatives
+                <span class="pull-right text-muted small"><em>0 robot</em>
+                </span>
+              </a>
+            <a href="#" class="list-group-item">
+              <i class="fa fa-spinner fa-fw"></i> Cleanups in the current month 
+              <span class="pull-right text-muted small"><em>0</em>
+              </span>
+              </a>
+            <a href="#" class="list-group-item">
+             <center> 
+              <button type="button" class="btn btn-warning btn-circle btn-xl">
+              <i class="fa fa-times"></i> STOP ALL!
+              </button>
+              </center>
+            </a>                        
+            </div>
+            <!-- /.list-group -->
+          </div>
+          <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-fw"></i> Cleanups in the current year
+            <div class="pull-right">
+            </div>
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div id="morris-area-chart" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+              <svg height="347" version="1.1" width="390" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;">
+              <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0
+              </desc>
+              <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+              <text x="50.5" y="313" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+              </text>
+              <path fill="none" stroke="#aaaaaa" d="M63,313H437" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+              <text x="50.5" y="241" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">10</tspan>
+              </text>
+              <path fill="none" stroke="#aaaaaa" d="M63,241H437" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+              <text x="50.5" y="169" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">20</tspan>
+              </text>
+              <path fill="none" stroke="#aaaaaa" d="M63,169H437" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+              <text x="50.5" y="97.00000000000003" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.000000000000028" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">30</tspan>
+              </text>
+              <path fill="none" stroke="#aaaaaa" d="M63,97.00000000000003H437" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+              <text x="50.5" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">40</tspan>
+              </text>
+              <path fill="none" stroke="#aaaaaa" d="M63,25H437" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+
+              <text x="240.90694613203726" y="325.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2016</tspan>
+              </text>
+
+              <path fill="#2677b5" stroke="none" d="M63,287.4064C73.45200486026732,287.1376,94.35601458080194,289.0264,104.80801944106926,286.3312C115.26002430133659,283.636,136.1640340218712,267.03835700296065,146.61603888213853,265.8448C156.94970129607128,264.66475700296064,177.61702612393682,279.1259348066298,187.95068853786958,276.8368C198.18020959902793,274.57073480662984,218.6392517213447,249.8830339208057,228.86877278250304,247.62400000000002C239.32077764277037,245.3158339208057,260.224787363305,256.18,270.6767922235723,258.568C281.12879708383963,260.95599999999996,302.0328068043742,278.07584276930083,312.48481166464154,266.728C322.8184740785743,255.50864276930085,343.48579890643987,175.3363763736264,353.8194613203726,168.2992C364.1625911300122,161.25557637362638,384.84885074929116,202.47732356020947,395.1919805589307,210.40480000000002C405.64398541919803,218.41572356020944,426.5479951397327,226.6408,437,232.0528L437,313L63,313Z" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></path>
+              <path fill="none" stroke="#0b62a4" d="M63,287.4064C73.45200486026732,287.1376,94.35601458080194,289.0264,104.80801944106926,286.3312C115.26002430133659,283.636,136.1640340218712,267.03835700296065,146.61603888213853,265.8448C156.94970129607128,264.66475700296064,177.61702612393682,279.1259348066298,187.95068853786958,276.8368C198.18020959902793,274.57073480662984,218.6392517213447,249.8830339208057,228.86877278250304,247.62400000000002C239.32077764277037,245.3158339208057,260.224787363305,256.18,270.6767922235723,258.568C281.12879708383963,260.95599999999996,302.0328068043742,278.07584276930083,312.48481166464154,266.728C322.8184740785743,255.50864276930085,343.48579890643987,175.3363763736264,353.8194613203726,168.2992C364.1625911300122,161.25557637362638,384.84885074929116,202.47732356020947,395.1919805589307,210.40480000000002C405.64398541919803,218.41572356020944,426.5479951397327,226.6408,437,232.0528" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+              <circle cx="63" cy="287.4064" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="104.80801944106926" cy="286.3312" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="146.61603888213853" cy="265.8448" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="187.95068853786958" cy="276.8368" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="228.86877278250304" cy="247.62400000000002" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="270.6767922235723" cy="258.568" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="312.48481166464154" cy="266.728" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="353.8194613203726" cy="168.2992" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="395.1919805589307" cy="210.40480000000002" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="437" cy="232.0528" r="5" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            </circle></svg>
+          </div>
+        </div>
+        <!-- /.panel-body -->
+      </div>
+        <a href="robots/new" class="btn btn-warning btn-lg btn-block">Create Robot</a>
     </div>
   </div>
-  <div id="page-wrapper">
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <i class="fa fa-bell fa-fw"></i> Notifications Panel
-        </div>
-        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <a href="robots/new" class="btn btn-warning btn-lg btn-block">Create Robot</a>
-  </div>
-</div>
 <!-- fim paineis de alertas -->
-
-
-
-  <br>
-  <hr class="intro-divider">
+</div>
+</div>

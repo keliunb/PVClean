@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :status %><br>
+    <%= f.label :status %>
+    <br>
     <%= f.number_field :status %>
   </div>
   <div class="field">
-    <%= f.label :identifier %><br>
-    <%= f.text_field :identifier %>
+    <%= f.label :identifier %>
+    <br> <%= f.text_field :identifier %>
   </div>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,73 +1,78 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1 align = "center">Listing Routines</h1>
-<div class = "container"><center>
-<table>
-  <thead>
-    <tr>
-      <td>Task</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Time</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Enable</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Monthly</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Sunday</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Monday</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Tuesday</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Wednesday</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Thursday</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Friday</td>
-      <td>&nbsp;&nbsp;&nbsp;</td>
-      <td>Saturday</td>
-      <td colspan="3"></td> 
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @routines.each do |routine| %>
-      <tr>
-        <td><%= routine.task.description %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.time %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.enable %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.monthly %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.sunday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.monday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.tuesday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.wednesday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.thursday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.friday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= routine.saturday %></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><%= link_to 'Show', routine %></td>
-        <td>&nbsp;&nbsp;&sdot;&nbsp;&nbsp;</td>
-        <td><%= link_to 'Edit', edit_routine_path(routine) %></td>
-        <td>&nbsp;&nbsp;&sdot;&nbsp;&nbsp;</td>
-        <td><%= link_to 'Destroy', routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<hr class="intro-divider">
-<%= link_to 'Create a New Routine', new_routine_path %>
-<br>
-</center>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-lg-12 col-md-12>
+        </div>
+        <div class="col-lg-12 col-md-12">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <i class="fa fa-list-alt fa-2x"></i>
+                  </div>
+                  <div class="col-xs-10 text-left">
+                    <div class="huge">
+                      <font size=4>Listing Routines</font>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+       </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Time</th>
+          <th>Enable</th>
+          <th>Monthly</th>
+          <th>Sunday</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th colspan="3"></th> 
+        </tr>
+      </thead>
+       <tbody>
+          <% @routines.each do |routine| %>
+            <tr>
+              <td><%= routine.task.description %></td>
+              <td><%= routine.time %></td>
+              <td><%= routine.enable %></td>
+              <td><%= routine.monthly %></td>
+              <td><%= routine.sunday %></td>
+              <td><%= routine.monday %></td>
+              <td><%= routine.tuesday %></td>
+              <td><%= routine.wednesday %></td>
+              <td><%= routine.thursday %></td>
+              <td><%= routine.friday %></td>
+              <td><%= routine.saturday %></td>
+              <td><%= link_to 'Show', routine %></td>
+              <td><%= link_to 'Edit', edit_routine_path(routine) %></td>
+              <td><%= link_to 'Destroy', routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
 </div>
+
+
+
+<br>
+
+<center><button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
+                            </button><%= link_to 'Create a New Routine', new_routine_path %>
+</center>
+<hr class="intro-divider">
