@@ -25,7 +25,7 @@ class Ability
         cannot :read, Role
         cannot :read, Robot
         cannot :read, Routine
-    else cannot :read, :all
+    #else cannot :read, :all
         #cannot :read, Admin page
     end
     # The first argument to `can` is the action you are giving the user

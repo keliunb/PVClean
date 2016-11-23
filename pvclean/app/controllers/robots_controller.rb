@@ -1,7 +1,8 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  authorize_resource :class => false
+  load_and_authorize_resource
+
 
 
   # GET /robots
