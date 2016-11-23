@@ -84,7 +84,12 @@
   <%= @robot.status %>
 </p>-->
 
-
+<div>
+<%= button_to('Teste', routine_robots_path, method: :post, :class => 'btn btn-large btn-primary')  %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+ <% end -%>
+</div>
 <!--<%= render partial: 'routines/list' %>-->
 <br>
 <%= link_to 'Edit', edit_robot_path(@robot) %> |

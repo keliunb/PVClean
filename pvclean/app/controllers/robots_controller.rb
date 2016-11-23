@@ -1,14 +1,38 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  load_and_authorize_resource
-
+  # If used, will break the routine method. so DO NOT USE it unless you don't need it.
+  #load_and_authorize resource
 
 
   # GET /robots
   # GET /robots.json
   def index
     @robots = Robot.all
+  end
+
+  def routine
+    #test were made with the code on https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
+    Thread.new do
+      hostname = 'localhost'
+      port = 6002
+
+      #abre o servidor no host e port especificado
+      s = TCPSocket.new(hostname,port)
+      teste = "teste"
+      s.send(teste, 0) #envia mensagem
+      #confirmacao_a = s.recv(100) #recebe mensagem
+      if confirmacao_a = teste
+        print "Confirmacao, enviou: " + teste + "\n"
+      end
+
+       confirmação = s.recv(100)
+        if confirmação
+          print "recebi: " + confirmação + "\n"
+        end
+
+    end
+    redirect_to :back
   end
 
   # GET /robots/1

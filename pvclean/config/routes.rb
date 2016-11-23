@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :roles
   resources :routines
-  resources :robots
+  resources :robots do
+    collection do
+      post 'routine'
+    end
+  end
   #devise_for :users, :path_prefix => 'my'
   #resources :users
   devise_for :users
