@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :routines
   resources :robots do
     collection do
-      post 'routine'
+      post 'complete'
+      post 'stop'
+      post 'first_half'
+      post 'last_half'
     end
   end
   #devise_for :users, :path_prefix => 'my'

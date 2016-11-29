@@ -65,15 +65,29 @@
             </div>
         </div>
     </div>
-    <div id="row">
-     <div id="col-xs-9 text-right">
-     <button type="button" class="btn btn-info btn-circle btn-xl"><i class="fa fa-check"></i>Clean total</button>
-<button type="button" class="btn btn-warning btn-circle btn-xl"><i class="fa fa-times"></i>
-                            Stop</button>
-    <button type="button" class="btn btn-primary btn-circle btn-xl"><i class="fa fa-list"></i>
-                            Programing routine</button>
-                            <br>
-    </div>
+     <div style="display: inline-block">
+     <%= button_to complete_robots_path, {method: :post, :class => 'btn btn-info btn-circle btn-xl'} do %>
+        <i class="fa fa-check"></i> Total clean
+     <% end %>
+     </div>
+
+     <div style="display: inline-block">
+     <%= button_to first_half_robots_path, {method: :post, :class => 'btn btn-large btn-success'} do %>
+         <i class="fa fa-check"></i> Limpar primeiro conjunto de placas
+     <% end %>
+     </div>
+
+     <div style="display: inline-block">
+     <%= button_to last_half_robots_path, {method: :post, :class => 'btn btn-large btn-warning'} do %>
+         <i class="fa fa-check"></i> Limpar segundo conjunto de Placas
+     <% end %>
+     </div>
+
+     <div style="display: inline-block">
+     <%= button_to stop_robots_path, {method: :post, :class => 'btn btn-large btn-danger'} do %>
+         <i class="fa fa-times"></i> Parada completa
+     <% end %>
+     </div>
 </div>
 
 
@@ -84,14 +98,6 @@
   <%= @robot.status %>
 </p>-->
 
-<div>
-<%= button_to('Teste', routine_robots_path, method: :post, :class => 'btn btn-large btn-primary')  %>
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
- <% end -%>
 </div>
 <!--<%= render partial: 'routines/list' %>-->
 <br>
-<%= link_to 'Edit', edit_robot_path(@robot) %> |
-<%= link_to 'Back', robots_path %>
-

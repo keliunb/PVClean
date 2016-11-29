@@ -1,5 +1,5 @@
 <% if @robot_info.nil? %>
-  Não encontrado 
+  Não encontrado
 <%else%>
   <div class="col-lg-3 col-md-6">
     <div style="width:98%; height:auto;border:0,5px solid #5cb85c;float:left; padding:1px;background:#5cb85c;color:#fff;">
@@ -9,14 +9,14 @@
             <i class="fa fa-spinner fa-5x"></i>
           </div>
           <div class="col-xs-9 text-right">
-            <div class="huge"><%= @robot_info.battery %></div>
-            <div>Batery</div>
+            <div class="huge"></div>
+            <div>Charged?</div>
           </div>
         </div>
       </div>
       <a href="#">
       <div class="panel-footer" >
-        <span class="pull-left">Temperature: <%= @robot_info.temperature %></span>
+        <span class="pull-left"> Yes</span>
           <div class="clearfix"></div>
         </div>
       </a>
@@ -31,14 +31,14 @@
                                       <i class="fa fa-cloud fa-5x"></i>
                                   </div>
                                   <div class="col-xs-9 text-right">
-                                      <div class="huge"><%= @robot_info.humidity %></div>
-                                      <div>Humidity </div>
+                                      <div class="huge"></div>
+                                      <div>Raining? </div>
                                   </div>
                               </div>
                           </div>
                           <a href="#">
                               <div class="panel-footer">
-                                  <span class="pull-left">Water: <%= @robot_info.water %></span>
+                                  <span class="pull-left"> No </span>
                                   <div class="clearfix"></div>
                               </div>
       </a>

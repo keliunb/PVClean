@@ -11,25 +11,124 @@ class RobotsController < ApplicationController
     @robots = Robot.all
   end
 
-  def routine
-    #test were made with the code on https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
+  def complete
+    #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     Thread.new do
+      #hostname='192.168.43.180'
       hostname = 'localhost'
-      port = 6002
+      port = 8000
 
       #abre o servidor no host e port especificado
-      s = TCPSocket.new(hostname,port)
-      teste = "teste"
-      s.send(teste, 0) #envia mensagem
-      #confirmacao_a = s.recv(100) #recebe mensagem
-      if confirmacao_a = teste
-        print "Confirmacao, enviou: " + teste + "\n"
+      socket = TCPSocket.new(hostname,port)
+
+      #Mensagem que será enviada, indicando intervalo de placas a serem limpadas
+      mensagem = "1_3"
+
+      #Envia Mensagem para o servidor
+      socket.send(mensagem, 0) #envia mensagem
+
+      #Printa no terminal qual mensagem foi enviada
+      print "Enviei: " + mensagem + "\n"
+
+      #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
+      confirmacao_envio = socket.recv(100)
+      if confirmacao_envio = mensagem
+        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
       end
 
-       confirmação = s.recv(100)
-        if confirmação
-          print "recebi: " + confirmação + "\n"
-        end
+      #Segunda Mensagem recebida
+      resposta = socket.recv(100)
+      if resposta
+        print "Servidor enviou: " + resposta + "\n"
+      end
+
+    end
+    sleep 0.05
+    redirect_to :back
+  end
+
+  def stop
+    #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
+    Thread.new do
+      #hostname='192.168.43.180'
+      hostname = 'localhost'
+      port = 8000
+
+      #abre o servidor no host e port especificado
+      socket = TCPSocket.new(hostname,port)
+      mensagem = "0_0"
+      socket.send(mensagem, 0) #envia mensagem
+      print "Enviei: " + mensagem + "\n"
+
+      #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
+      confirmacao_envio = socket.recv(100) #recebe mensagem
+      if confirmacao_envio = mensagem
+        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
+      end
+
+      #Segunda Mensagem recebida
+      resposta = socket.recv(100)
+      if resposta
+        print "recebi: " + resposta + "\n"
+      end
+
+    end
+    redirect_to :back
+  end
+
+  def first_half
+    #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
+    Thread.new do
+      #hostname='192.168.43.180'
+      hostname = 'localhost'
+      port = 8000
+
+      #abre o servidor no host e port especificado
+      socket = TCPSocket.new(hostname,port)
+      mensagem = "1_2"
+      socket.send(mensagem, 0) #envia mensagem
+      print "Enviei: " + mensagem + "\n"
+
+      #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
+      confirmacao_envio = socket.recv(100) #recebe mensagem
+      if confirmacao_envio = mensagem
+        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
+      end
+
+      #Segunda Mensagem recebida
+      resposta = socket.recv(100)
+      if resposta
+        print "recebi: " + resposta + "\n"
+      end
+
+    end
+    redirect_to :back
+  end
+
+  def last_half
+    #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
+    Thread.new do
+      #hostname='192.168.43.180'
+      hostname = 'localhost'
+      port = 8000
+
+      #abre o servidor no host e port especificado
+      socket = TCPSocket.new(hostname,port)
+      mensagem = "2_3"
+      socket.send(mensagem, 0) #envia mensagem
+      print "Enviei: " + mensagem + "\n"
+
+      #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
+      confirmacao_envio = socket.recv(100) #recebe mensagem
+      if confirmacao_envio = mensagem
+        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
+      end
+
+      #Segunda Mensagem recebida
+      resposta = socket.recv(100)
+      if resposta
+        print "Recebi: " + resposta + "\n"
+      end
 
     end
     redirect_to :back
