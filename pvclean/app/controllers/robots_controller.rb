@@ -15,31 +15,39 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     Thread.new do
       #hostname='192.168.43.180'
-      hostname = 'localhost'
-      port = 8000
+      hostname = '192.168.43.30'
+      port = 8002
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
 
       #Mensagem que será enviada, indicando intervalo de placas a serem limpadas
-      mensagem = "1_3"
+      mensagem = "0_2"
 
       #Envia Mensagem para o servidor
       socket.send(mensagem, 0) #envia mensagem
 
       #Printa no terminal qual mensagem foi enviada
       print "Enviei: " + mensagem + "\n"
+      sleep 0.5
 
       #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
-      confirmacao_envio = socket.recv(100)
-      if confirmacao_envio = mensagem
-        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
+      confirmacao_envio = socket.recv(25)
+      if confirmacao_envio
+        print "Primeira resposta: " + confirmacao_envio + "\n"
+        #print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
       end
 
       #Segunda Mensagem recebida
-      resposta = socket.recv(100)
+      resposta = socket.recv(25)
       if resposta
-        print "Servidor enviou: " + resposta + "\n"
+        print "Segunda resposta: " + resposta + "\n"
+      end
+
+      #Terceira mensagem recebida
+      resposta2 = socket.recv(160)
+      if resposta2
+        print "Terceira resposta: " + resposta2 + "\n"
       end
 
     end
@@ -51,8 +59,8 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     Thread.new do
       #hostname='192.168.43.180'
-      hostname = 'localhost'
-      port = 8000
+      hostname = '192.168.43.30'
+      port = 8016
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
@@ -80,8 +88,8 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     Thread.new do
       #hostname='192.168.43.180'
-      hostname = 'localhost'
-      port = 8000
+      hostname = '192.168.43.30'
+      port = 8016
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
@@ -109,8 +117,8 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     Thread.new do
       #hostname='192.168.43.180'
-      hostname = 'localhost'
-      port = 8000
+      hostname = '192.168.43.30'
+      port = 8016
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
