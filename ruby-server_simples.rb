@@ -11,26 +11,27 @@ loop {
   mensagem_recebida = client.recv(100)
 
   #Apresenta no terminal qual foi a mensagem recebida
-  if mensagem_recebida == "1_3"
+  if mensagem_recebida == "0_2"
     print mensagem_recebida + ": Limpeza completa\n"
     #Envia para o servidor a mensagem de sucesso
-    client.send("Servidor recebeu " + mensagem_recebida + "\n", 0)
+    #client.send("Servidor recebeu " + mensagem_recebida + "\n", 0)
+    client.send("12.123.456_19.91_1_0_1",0)
   elsif mensagem_recebida == "0_0"
     print mensagem_recebida + ": Parada completa\n"
     #Envia para o servidor a mensagem de sucesso
     client.send("Servidor recebeu " + mensagem_recebida + "\n", 0)
-  elsif mensagem_recebida == "1_2"
+  elsif mensagem_recebida == "0_1"
     print mensagem_recebida + ": Limpeza da primeira metade das placas\n"
     #Envia para o servidor a mensagem de sucesso
     client.send("Servidor recebeu " + mensagem_recebida + "\n", 0)
-  elsif mensagem_recebida == "2_3"
+  elsif mensagem_recebida == "1_2"
     print mensagem_recebida + ": Limpeza da segunda metade das placas\n"
     #Envia para o servidor a mensagem de sucesso
     client.send("Servidor recebeu " + mensagem_recebida + "\n", 0)
   end
 
   #Tempo para sincronizar o envio da mensagem para o cliente
-  sleep 0.001
+  sleep 0.5
   #Envia para o servidor a mensagem de sucesso
   client.send("Servidor recebeu " + mensagem_recebida + "\n", 0)
 
