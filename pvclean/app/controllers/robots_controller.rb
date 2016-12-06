@@ -12,11 +12,22 @@ class RobotsController < ApplicationController
   end
 
   def complete
+
+    #São declaradas variáveis globais, que são utilizadas dentro da thread.
+    $tensao = ""
+    $temperatura = ""
+    $reservatorio = ""
+    $chuva = ""
+    $confirmacao_inicio
+    $posicao = ""
+
+    #puts "Tensao: " + $tensao + ". Temperatura: " + $temperatura + "\n"
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
-    Thread.new do
-      #hostname='192.168.43.180'
-      hostname = '192.168.43.30'
-      port = 8002
+    inicio_limpeza = Thread.new($tensao, $temperatura, $reservatorio, $chuva, $confirmacao_inicio, $posicao) do
+
+      hostname='localhost'
+      #hostname = '192.168.43.30'
+      port = 8000
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
@@ -32,117 +43,250 @@ class RobotsController < ApplicationController
       sleep 0.5
 
       #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
-      confirmacao_envio = socket.recv(25)
-      if confirmacao_envio
-        print "Primeira resposta: " + confirmacao_envio + "\n"
+      primeira_resposta = socket.recv(22)
+      if primeira_resposta
+        print "Primeira resposta: " + primeira_resposta + "\n"
         #print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
       end
 
-      #Segunda Mensagem recebida
-      resposta = socket.recv(25)
+      $tensao = primeira_resposta[0..4]
+      $temperatura = primeira_resposta[11..15]
+      $reservatorio = primeira_resposta[17..17]
+      $chuva = primeira_resposta[19..19]
+      $confirmacao_inicio = primeira_resposta[21..21]
+      #$posicao = ""
+
+      #apresenta dados lidos
+      print "Tensao: " + $tensao + "\n"
+      print "Temperatura: " + $temperatura + "\n"
+      print "Reservatorio: " + $reservatorio + "\n"
+      print "Chuva: " + $chuva + "\n"
+      print "Confirmacao: " + $confirmacao_inicio + "\n"
+
+      sleep 0.5
+      #Segunda Mensagem recebida - Caso necessário
+      resposta = socket.recv(22)
       if resposta
         print "Segunda resposta: " + resposta + "\n"
       end
 
-      #Terceira mensagem recebida
-      resposta2 = socket.recv(160)
-      if resposta2
-        print "Terceira resposta: " + resposta2 + "\n"
-      end
-
+#      socket.close
     end
-    sleep 0.05
+
+    #É necessário "dormir" para que a thread rode antes e atualize os dados, que em seguida serão utilizados
+    sleep 2.00
+
+    #Transforma cada um dos dados lidos nos sensores em float
+    tensao_final = $tensao.to_f
+    temperatura_final = $temperatura.to_f
+    reservatorio_final = $reservatorio.to_f
+    chuva_final = $chuva.to_f
+    #String no final
+    confirmacao_comecou = $confirmacao_inicio
+
+    #Caso queira verificar no console
+    #puts "Dados apos a limpeza"
+    #puts " - - - - - - - - - - - - - - "
+    #puts temperatura_final.to_s + " - " + $temperatura
+    #puts "Tensao final: " + tensao_final.to_s
+    #puts "Reservatorio final: " + reservatorio_final.to_s
+    #puts "Chuva final: " + chuva_final.to_s
+    #puts "Confirmacao_comecou: " + confirmacao_comecou.to_s
+
+    #o primeiro parâmetro é o id do robô, o segundo os dados a serem atualizados
+    Robot.first.robot_infos.update( [2],
+        [
+          {battery: tensao_final, temperature: temperatura_final, water: reservatorio_final,
+            humidity: chuva_final, position: confirmacao_comecou},
+        ])
+    sleep 0.3
+
+    #Aqui serão disponibilizadas as mensagens para o usuário (se chuva=1 notícia que n começou pq tá chovendo e etc)
     flash[:notice] = " ........\"Total clean\" started !"
     redirect_to :back
   end
 
-  def stop
-    #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
-    Thread.new do
-      #hostname='192.168.43.180'
-      hostname = '192.168.43.30'
-      port = 8016
-
-      #abre o servidor no host e port especificado
-      socket = TCPSocket.new(hostname,port)
-      mensagem = "0_0"
-      socket.send(mensagem, 0) #envia mensagem
-      print "Enviei: " + mensagem + "\n"
-
-      #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
-      confirmacao_envio = socket.recv(100) #recebe mensagem
-      if confirmacao_envio = mensagem
-        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
-      end
-
-      #Segunda Mensagem recebida
-      resposta = socket.recv(100)
-      if resposta
-        print "recebi: " + resposta + "\n"
-      end
-
-    end
-    flash[:notice] = " ........\"Stop robot path\" started !"
-    redirect_to :back
-  end
-
   def first_half
+    #São declaradas variáveis globais, que são utilizadas dentro da thread.
+    $tensao = ""
+    $temperatura = ""
+    $reservatorio = ""
+    $chuva = ""
+    $confirmacao_inicio
+    $posicao = ""
+
+    #puts "Tensao: " + $tensao + ". Temperatura: " + $temperatura + "\n"
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
-    Thread.new do
-      #hostname='192.168.43.180'
-      hostname = '192.168.43.30'
-      port = 8016
+    inicio_limpeza = Thread.new($tensao, $temperatura, $reservatorio, $chuva, $confirmacao_inicio, $posicao) do
+
+      hostname='localhost'
+      #hostname = '192.168.43.30'
+      port = 8000
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
-      mensagem = "1_2"
+
+      #Mensagem que será enviada, indicando intervalo de placas a serem limpadas
+      mensagem = "0_1"
+
+      #Envia Mensagem para o servidor
       socket.send(mensagem, 0) #envia mensagem
+
+      #Printa no terminal qual mensagem foi enviada
       print "Enviei: " + mensagem + "\n"
+      sleep 0.5
 
       #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
-      confirmacao_envio = socket.recv(100) #recebe mensagem
-      if confirmacao_envio = mensagem
-        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
+      primeira_resposta = socket.recv(22)
+      if primeira_resposta
+        print "Primeira resposta: " + primeira_resposta + "\n"
+        #print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
       end
 
-      #Segunda Mensagem recebida
-      resposta = socket.recv(100)
+      $tensao = primeira_resposta[0..4]
+      $temperatura = primeira_resposta[11..15]
+      $reservatorio = primeira_resposta[17..17]
+      $chuva = primeira_resposta[19..19]
+      $confirmacao_inicio = primeira_resposta[21..21]
+      #$posicao = ""
+
+      #apresenta dados lidos
+      print "Tensao: " + $tensao + "\n"
+      print "Temperatura: " + $temperatura + "\n"
+      print "Reservatorio: " + $reservatorio + "\n"
+      print "Chuva: " + $chuva + "\n"
+      print "Confirmacao: " + $confirmacao_inicio + "\n"
+
+      sleep 0.5
+      #Segunda Mensagem recebida - Caso necessário
+      resposta = socket.recv(22)
       if resposta
-        print "recebi: " + resposta + "\n"
+        print "Segunda resposta: " + resposta + "\n"
       end
 
+#      socket.close
     end
-    flash[:notice] = " ........\"First half robots path\" started !"
+
+    #É necessário "dormir" para que a thread rode antes e atualize os dados, que em seguida serão utilizados
+    sleep 2.00
+
+    #Transforma cada um dos dados lidos nos sensores em float
+    tensao_final = $tensao.to_f
+    temperatura_final = $temperatura.to_f
+    reservatorio_final = $reservatorio.to_f
+    chuva_final = $chuva.to_f
+    #String no final
+    confirmacao_comecou = $confirmacao_inicio
+
+    #Caso queira verificar no console
+    #puts "Dados apos a limpeza"
+    #puts " - - - - - - - - - - - - - - "
+    #puts temperatura_final.to_s + " - " + $temperatura
+    #puts "Tensao final: " + tensao_final.to_s
+    #puts "Reservatorio final: " + reservatorio_final.to_s
+    #puts "Chuva final: " + chuva_final.to_s
+    #puts "Confirmacao_comecou: " + confirmacao_comecou.to_s
+
+    #o primeiro parâmetro é o id do robô, o segundo os dados a serem atualizados
+    Robot.first.robot_infos.update( [2],
+        [
+          {battery: tensao_final, temperature: temperatura_final, water: reservatorio_final,
+            humidity: chuva_final, position: confirmacao_comecou},
+        ])
+    sleep 0.3
+    flash[:notice] = " ........\"Total clean\" started !"
     redirect_to :back
   end
 
   def last_half
+    #São declaradas variáveis globais, que são utilizadas dentro da thread.
+    $tensao = ""
+    $temperatura = ""
+    $reservatorio = ""
+    $chuva = ""
+    $confirmacao_inicio
+    $posicao = ""
+
+    #puts "Tensao: " + $tensao + ". Temperatura: " + $temperatura + "\n"
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
-    Thread.new do
-      #hostname='192.168.43.180'
-      hostname = '192.168.43.30'
-      port = 8016
+    inicio_limpeza = Thread.new($tensao, $temperatura, $reservatorio, $chuva, $confirmacao_inicio, $posicao) do
+
+      hostname='localhost'
+      #hostname = '192.168.43.30'
+      port = 8000
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
-      mensagem = "2_3"
+
+      #Mensagem que será enviada, indicando intervalo de placas a serem limpadas
+      mensagem = "1_2"
+
+      #Envia Mensagem para o servidor
       socket.send(mensagem, 0) #envia mensagem
+
+      #Printa no terminal qual mensagem foi enviada
       print "Enviei: " + mensagem + "\n"
+      sleep 0.5
 
       #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
-      confirmacao_envio = socket.recv(100) #recebe mensagem
-      if confirmacao_envio = mensagem
-        print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
+      primeira_resposta = socket.recv(22)
+      if primeira_resposta
+        print "Primeira resposta: " + primeira_resposta + "\n"
+        #print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
       end
 
-      #Segunda Mensagem recebida
-      resposta = socket.recv(100)
+      $tensao = primeira_resposta[0..4]
+      $temperatura = primeira_resposta[11..15]
+      $reservatorio = primeira_resposta[17..17]
+      $chuva = primeira_resposta[19..19]
+      $confirmacao_inicio = primeira_resposta[21..21]
+      #$posicao = ""
+
+      #apresenta dados lidos
+      print "Tensao: " + $tensao + "\n"
+      print "Temperatura: " + $temperatura + "\n"
+      print "Reservatorio: " + $reservatorio + "\n"
+      print "Chuva: " + $chuva + "\n"
+      print "Confirmacao: " + $confirmacao_inicio + "\n"
+
+      sleep 0.5
+      #Segunda Mensagem recebida - Caso necessário
+      resposta = socket.recv(22)
       if resposta
-        print "Recebi: " + resposta + "\n"
+        print "Segunda resposta: " + resposta + "\n"
       end
 
+#      socket.close
     end
-    flash[:notice] = " ........\"Last half robots path\" started !"
+
+    #É necessário "dormir" para que a thread rode antes e atualize os dados, que em seguida serão utilizados
+    sleep 3.00
+
+    #Transforma cada um dos dados lidos nos sensores em float
+    tensao_final = $tensao.to_f
+    temperatura_final = $temperatura.to_f
+    reservatorio_final = $reservatorio.to_f
+    chuva_final = $chuva.to_f
+    #String no final
+    confirmacao_comecou = $confirmacao_inicio
+
+    #Caso queira verificar no console
+    #puts "Dados apos a limpeza"
+    #puts " - - - - - - - - - - - - - - "
+    #puts temperatura_final.to_s + " - " + $temperatura
+    #puts "Tensao final: " + tensao_final.to_s
+    #puts "Reservatorio final: " + reservatorio_final.to_s
+    #puts "Chuva final: " + chuva_final.to_s
+    #puts "Confirmacao_comecou: " + confirmacao_comecou.to_s
+
+    #o primeiro parâmetro é o id do robô, o segundo os dados a serem atualizados
+    Robot.first.robot_infos.update( [2],
+        [
+          {battery: tensao_final, temperature: temperatura_final, water: reservatorio_final,
+            humidity: chuva_final, position: confirmacao_comecou},
+        ])
+    sleep 0.3
+    flash[:notice] = " ........\"Total clean\" started !"
     redirect_to :back
   end
 

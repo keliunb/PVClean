@@ -1,7 +1,7 @@
 <% if @robot_info.nil? %>
   Não encontrado
 <%else%>
-  <div class="col-lg-3 col-md-6">
+  <div class="col-lg-2 col-md-6">
     <div style="width:98%; height:auto;border:0,5px solid #5cb85c;float:left; padding:1px;background:#5cb85c;color:#fff;">
       <div class="panel-heading">
         <div class="row">
@@ -20,9 +20,34 @@
           <div class="clearfix"></div>
         </div>
       </a>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6">
+    </div>
+  </div>
+    <div class="col-lg-3 col-md-6">
+    <div style="width:98%; height:auto;border:0,5px solid #5cb85c;float:left; padding:1px;background:#99b3ff;color:#fff;">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i class="fa fa-battery fa-5x"></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge"></div>
+            <div>Battery tension?</div>
+          </div>
+        </div>
+      </div>
+      <a href="#">
+      <div class="panel-footer" >
+        <span class="pull-left">
+          <% if @robot_info.battery%>
+            <%= @robot_info.battery %>V
+          <% end %>
+        </span>
+          <div class="clearfix"></div>
+      </div>
+      </a>
+    </div>
+  </div>
+                  <div class="col-lg-2 col-md-6">
                       <div style="width:98%; height:auto;border:0,5px solid  #f0ad4e;float:left; padding:1px;background: #f0ad4e;color:#fff;">
                       <!--<div class="panel panel-yellow">-->
                           <div class="panel-heading">
@@ -38,7 +63,10 @@
                           </div>
                           <a href="#">
                               <div class="panel-footer">
-                                  <span class="pull-left"> No </span>
+                                  <span class="pull-left">
+                                    <% if @robot_info.humidity == 1 %> Yes
+                                    <% else %> No
+                                    <% end %>  </span>
                                   <div class="clearfix"></div>
                               </div>
       </a>
