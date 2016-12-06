@@ -52,6 +52,7 @@ class RobotsController < ApplicationController
 
     end
     sleep 0.05
+    flash[:notice] = " ........\"Total clean\" started !"
     redirect_to :back
   end
 
@@ -81,6 +82,7 @@ class RobotsController < ApplicationController
       end
 
     end
+    flash[:notice] = " ........\"Stop robot path\" started !"
     redirect_to :back
   end
 
@@ -110,6 +112,7 @@ class RobotsController < ApplicationController
       end
 
     end
+    flash[:notice] = " ........\"First half robots path\" started !"
     redirect_to :back
   end
 
@@ -139,6 +142,7 @@ class RobotsController < ApplicationController
       end
 
     end
+    flash[:notice] = " ........\"Last half robots path\" started !"
     redirect_to :back
   end
 
