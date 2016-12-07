@@ -16,7 +16,10 @@
       </div>
       <a href="#">
       <div class="panel-footer" >
-        <span class="pull-left"> Yes</span>
+        <span class="pull-left">
+        <% if @robot_info.battery == 0%> No
+        <% elsif @robot_info.battery > 6%> Yes
+          <% end %></span>
           <div class="clearfix"></div>
         </div>
       </a>
@@ -47,29 +50,56 @@
       </a>
     </div>
   </div>
-                  <div class="col-lg-2 col-md-6">
-                      <div style="width:98%; height:auto;border:0,5px solid  #f0ad4e;float:left; padding:1px;background: #f0ad4e;color:#fff;">
-                      <!--<div class="panel panel-yellow">-->
-                          <div class="panel-heading">
-                              <div class="row">
-                                  <div class="col-xs-3">
-                                      <i class="fa fa-cloud fa-5x"></i>
-                                  </div>
-                                  <div class="col-xs-9 text-right">
-                                      <div class="huge"></div>
-                                      <div>Raining? </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <a href="#">
-                              <div class="panel-footer">
-                                  <span class="pull-left">
-                                    <% if @robot_info.humidity == 1 %> Yes
-                                    <% else %> No
-                                    <% end %>  </span>
-                                  <div class="clearfix"></div>
-                              </div>
+  <div class="col-lg-2 col-md-6">
+      <div style="width:98%; height:auto;border:0,5px solid  #f0ad4e;float:left; padding:1px;background: #f0ad4e;color:#fff;">
+      <!--<div class="panel panel-yellow">-->
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-3">
+                      <i class="fa fa-cloud fa-5x"></i>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                      <div class="huge"></div>
+                      <div>Raining? </div>
+                  </div>
+              </div>
+          </div>
+          <a href="#">
+              <div class="panel-footer">
+                  <span class="pull-left">
+                    <% if @robot_info.humidity == 1 %> Yes
+                    <% else %> No
+                    <% end %>  </span>
+                  <div class="clearfix"></div>
+              </div>
       </a>
     </div>
    </div>
+
+ <div class="col-lg-2 col-md-6">
+    <div style="width:98%; height:auto;border:0,5px solid #5cb85c;float:left; padding:1px;background:#82e58f;color:#fff;">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i class="fa fa-thermometer-three-quarters fa-5x"></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge"></div>
+            <div>Temperature</div>
+          </div>
+        </div>
+      </div>
+      <a href="#">
+      <div class="panel-footer" >
+        <span class="pull-left">
+          <% if @robot_info.temperature%>
+            <%= @robot_info.temperature %> ºC
+          <% end %>
+        </span>
+          <div class="clearfix"></div>
+      </div>
+      </a>
+    </div>
+  </div>
+
 <%end%>

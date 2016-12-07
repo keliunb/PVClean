@@ -25,9 +25,9 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     inicio_limpeza = Thread.new($tensao, $temperatura, $reservatorio, $chuva, $confirmacao_inicio, $posicao) do
 
-      hostname='localhost'
-      #hostname = '192.168.43.30'
-      port = 8000
+      #hostname='localhost'
+      hostname = '192.168.43.30'
+      port = 8011
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
@@ -43,17 +43,27 @@ class RobotsController < ApplicationController
       sleep 0.5
 
       #verifica se a mensagem foi enviada corretamente (O servidor recebe a mensagem e envia uma de confirmação)
-      primeira_resposta = socket.recv(22)
+      #formato da mensagem: 12.123.456_19.91_1_1_0
+      #formato da mensagem: 13.117.58_17.58_1_1_1
+      #formato: VV.vv#.##_TT.tt_C_R_S
+      primeira_resposta = socket.recv(21)
       if primeira_resposta
         print "Primeira resposta: " + primeira_resposta + "\n"
         #print "Confirmacao, servidor recebeu:" + confirmacao_envio + "\n"
       end
 
+      #$tensao = primeira_resposta[0..4]
+      #$temperatura = primeira_resposta[11..15]
+      #$reservatorio = primeira_resposta[17..17]
+      #$chuva = primeira_resposta[19..19]
+      #$confirmacao_inicio = primeira_resposta[21..21]
+
       $tensao = primeira_resposta[0..4]
-      $temperatura = primeira_resposta[11..15]
-      $reservatorio = primeira_resposta[17..17]
-      $chuva = primeira_resposta[19..19]
-      $confirmacao_inicio = primeira_resposta[21..21]
+      $temperatura = primeira_resposta[10..14]
+      $chuva = primeira_resposta[16..16]
+      $reservatorio = primeira_resposta[18..18]
+      $confirmacao_inicio = primeira_resposta[20..20]
+
       #$posicao = ""
 
       #apresenta dados lidos
@@ -65,7 +75,7 @@ class RobotsController < ApplicationController
 
       sleep 0.5
       #Segunda Mensagem recebida - Caso necessário
-      resposta = socket.recv(22)
+      resposta = socket.recv(21)
       if resposta
         print "Segunda resposta: " + resposta + "\n"
       end
@@ -74,7 +84,7 @@ class RobotsController < ApplicationController
     end
 
     #É necessário "dormir" para que a thread rode antes e atualize os dados, que em seguida serão utilizados
-    sleep 2.00
+    sleep 2.50
 
     #Transforma cada um dos dados lidos nos sensores em float
     tensao_final = $tensao.to_f
@@ -102,13 +112,16 @@ class RobotsController < ApplicationController
         ])
     sleep 0.3
 
-    if chuva_final == 1
+    #SE = 0, tá chovendo
+    if chuva_final == 0
       flash[:info] = "It was not possible to start the cleaning routine due to rain."
+    #RESERVATORIO = 0, sem água
+    elsif tensao_final <= 10.0 or temperatura_final >= 50.0 or reservatorio_final == 0
+      flash[:danger] = "Low battery or temperature too high or reservatory too low."
     elsif confirmacao_comecou2 == 0
       flash[:warning] = "It was not possible to start the cleaning routine. Please check the sensors."
-    elsif tensao_final <= 5 or temperatura_final >= 30.0 or reservatorio_final == 1
-      flash[:danger] = "Low battery or temperature too high or reservatory too low."
-    elsif confirmacao_comecou2 == 1 and tensao_final > 5 and temperatura_final < 30 and reservatorio_final != 1 and chuva_final != 1
+    #CONFIRMACAO = 1, tudo certo
+    elsif confirmacao_comecou2 == 1 and tensao_final > 10 and temperatura_final < 50 and reservatorio_final == 1 and chuva_final == 1
       flash[:success] = "Success: Clean started."
     end
 
@@ -130,9 +143,9 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     inicio_limpeza = Thread.new($tensao, $temperatura, $reservatorio, $chuva, $confirmacao_inicio, $posicao) do
 
-      hostname='localhost'
-      #hostname = '192.168.43.30'
-      port = 8000
+      #hostname='localhost'
+      hostname = '192.168.43.30'
+      port = 8011
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
@@ -155,10 +168,10 @@ class RobotsController < ApplicationController
       end
 
       $tensao = primeira_resposta[0..4]
-      $temperatura = primeira_resposta[11..15]
-      $reservatorio = primeira_resposta[17..17]
-      $chuva = primeira_resposta[19..19]
-      $confirmacao_inicio = primeira_resposta[21..21]
+      $temperatura = primeira_resposta[10..14]
+      $chuva = primeira_resposta[16..16]
+      $reservatorio = primeira_resposta[18..18]
+      $confirmacao_inicio = primeira_resposta[20..20]
       #$posicao = ""
 
       #apresenta dados lidos
@@ -179,7 +192,7 @@ class RobotsController < ApplicationController
     end
 
     #É necessário "dormir" para que a thread rode antes e atualize os dados, que em seguida serão utilizados
-    sleep 2.00
+    sleep 2.50
 
     #Transforma cada um dos dados lidos nos sensores em float
     tensao_final = $tensao.to_f
@@ -207,13 +220,16 @@ class RobotsController < ApplicationController
         ])
     sleep 0.3
 
-    if chuva_final == 1
+    #SE = 0, tá chovendo
+    if chuva_final == 0
       flash[:info] = "It was not possible to start the cleaning routine due to rain."
+    #RESERVATORIO = 0, sem água
+    elsif tensao_final <= 10.0 or temperatura_final >= 50.0 or reservatorio_final == 0
+      flash[:danger] = "Low battery or temperature too high or reservatory too low."
     elsif confirmacao_comecou2 == 0
       flash[:warning] = "It was not possible to start the cleaning routine. Please check the sensors."
-    elsif tensao_final <= 5 or temperatura_final >= 30.0 or reservatorio_final == 1
-      flash[:danger] = "Low battery or temperature too high or reservatory too low."
-    elsif confirmacao_comecou2 == 1 and tensao_final > 5 and temperatura_final < 30 and reservatorio_final != 1 and chuva_final != 1
+    #CONFIRMACAO = 1, tudo certo
+    elsif confirmacao_comecou2 == 1 and tensao_final > 10 and temperatura_final < 50 and reservatorio_final == 1 and chuva_final == 1
       flash[:success] = "Success: Clean started."
     end
 
@@ -233,9 +249,9 @@ class RobotsController < ApplicationController
     #tests were made with this code: https://github.com/keliunb/PVClean/blob/script_servidor/ruby-server_simples.rb
     inicio_limpeza = Thread.new($tensao, $temperatura, $reservatorio, $chuva, $confirmacao_inicio, $posicao) do
 
-      hostname='localhost'
-      #hostname = '192.168.43.30'
-      port = 8000
+      #hostname='localhost'
+      hostname = '192.168.43.30'
+      port = 8011
 
       #abre o servidor no host e port especificado
       socket = TCPSocket.new(hostname,port)
@@ -258,10 +274,10 @@ class RobotsController < ApplicationController
       end
 
       $tensao = primeira_resposta[0..4]
-      $temperatura = primeira_resposta[11..15]
-      $reservatorio = primeira_resposta[17..17]
-      $chuva = primeira_resposta[19..19]
-      $confirmacao_inicio = primeira_resposta[21..21]
+      $temperatura = primeira_resposta[10..14]
+      $chuva = primeira_resposta[16..16]
+      $reservatorio = primeira_resposta[18..18]
+      $confirmacao_inicio = primeira_resposta[20..20]
       #$posicao = ""
 
       #apresenta dados lidos
@@ -282,7 +298,7 @@ class RobotsController < ApplicationController
     end
 
     #É necessário "dormir" para que a thread rode antes e atualize os dados, que em seguida serão utilizados
-    sleep 3.00
+    sleep 2.50
 
     #Transforma cada um dos dados lidos nos sensores em float
     tensao_final = $tensao.to_f
@@ -310,15 +326,19 @@ class RobotsController < ApplicationController
         ])
     sleep 0.3
 
-    if chuva_final == 1
+    #SE = 0, tá chovendo
+    if chuva_final == 0
       flash[:info] = "It was not possible to start the cleaning routine due to rain."
+    #RESERVATORIO = 0, sem água
+    elsif tensao_final <= 10.0 or temperatura_final >= 50.0 or reservatorio_final == 0
+      flash[:danger] = "Low battery or temperature too high or reservatory too low."
     elsif confirmacao_comecou2 == 0
       flash[:warning] = "It was not possible to start the cleaning routine. Please check the sensors."
-    elsif tensao_final <= 5 or temperatura_final >= 30.0 or reservatorio_final == 1
-      flash[:danger] = "Low battery or temperature too high or reservatory too low."
-    elsif confirmacao_comecou2 == 1 and tensao_final > 5 and temperatura_final < 30 and reservatorio_final != 1 and chuva_final != 1
+    #CONFIRMACAO = 1, tudo certo
+    elsif confirmacao_comecou2 == 1 and tensao_final > 10 and temperatura_final < 50 and reservatorio_final == 1 and chuva_final == 1
       flash[:success] = "Success: Clean started."
     end
+
 
     redirect_to :back
   end

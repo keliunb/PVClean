@@ -31,7 +31,11 @@
                             </div>
                         </div>
                             <div class="panel-footer">
-                                <span class="pull-left">Active</span>
+                                <span class="pull-left">
+                                    <% if @robot_info.battery == 0.0 %> Inactive
+                                    <% else %> Active
+                                    <% end %>
+                                </span>
                                 <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i>
                                 </span>-->
                                 <div class="clearfix"></div>
@@ -39,9 +43,10 @@
                     </div>
                 </div>
                 <%= render partial: 'robot_infos/show' %>
-                <div class="col-lg-2 col-md-6">
+                <br><br><br><br><br><br><br><br>
+                <div class="col-lg-11 col-md-6">
                     <!--<div class="panel panel-red">-->
-                    <div style="width:98%; height:auto;border:0,5px solid  #d9534f;float:left; padding:1px;background: #d9534f;color:#fff;">
+                    <div style="width:100%; height:auto;border:0,5px solid  #d9534f;float:left; padding:1px;background: #d9534f;color:#fff;">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -61,13 +66,13 @@
                         </a>
                     </div>
                 </div>
-
+                <br><br><br><br><br><br><br><br>
             </div>
         </div>
     </div>
      <div style="display: inline-block">
      <%= button_to complete_robots_path, {method: :post, :class => 'btn btn-info btn-circle btn-xl'} do %>
-        <i class="fa fa-check"></i> Total clean
+        <i class="fa fa-check"></i> Complete clean
      <% end %>
      </div>
 
@@ -76,19 +81,22 @@
          <i class="fa fa-check"></i> First half robots path
      <% end %>
      </div>
-
+<!--
      <div style="display: inline-block">
      <%= button_to last_half_robots_path, {method: :post, :class => 'btn btn-large btn-warning'} do %>
          <i class="fa fa-check"></i> Last half rotos path
      <% end %>
      </div>
-
+-->
+<!--
      <div style="display: inline-block">
      <%= button_to stop_robots_path, {method: :post, :class => 'btn btn-large btn-danger'} do %>
          <i class="fa fa-times"></i> Stop robot path
      <% end %>
      </div>
-     <br>
+-->
+
+     <br><br>
      <%= flash_message.html_safe %>
 
 </div>
