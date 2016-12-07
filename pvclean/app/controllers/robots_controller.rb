@@ -83,6 +83,7 @@ class RobotsController < ApplicationController
     chuva_final = $chuva.to_f
     #String no final
     confirmacao_comecou = $confirmacao_inicio
+    confirmacao_comecou2 = $confirmacao_inicio.to_f
 
     #Caso queira verificar no console
     #puts "Dados apos a limpeza"
@@ -101,8 +102,18 @@ class RobotsController < ApplicationController
         ])
     sleep 0.3
 
+    if chuva_final == 1
+      flash[:info] = "It was not possible to start the cleaning routine due to rain."
+    elsif confirmacao_comecou2 == 0
+      flash[:warning] = "It was not possible to start the cleaning routine. Please check the sensors."
+    elsif tensao_final <= 5 or temperatura_final >= 30.0 or reservatorio_final == 1
+      flash[:danger] = "Low battery or temperature too high or reservatory too low."
+    elsif confirmacao_comecou2 == 1 and tensao_final > 5 and temperatura_final < 30 and reservatorio_final != 1 and chuva_final != 1
+      flash[:success] = "Success: Clean started."
+    end
+
     #Aqui serão disponibilizadas as mensagens para o usuário (se chuva=1 notícia que n começou pq tá chovendo e etc)
-    flash[:notice] = " ........\"Total clean\" started !"
+    #flash[:notice] = " ........\"Total clean\" started !"
     redirect_to :back
   end
 
@@ -177,6 +188,7 @@ class RobotsController < ApplicationController
     chuva_final = $chuva.to_f
     #String no final
     confirmacao_comecou = $confirmacao_inicio
+    confirmacao_comecou2 = $confirmacao_inicio.to_f
 
     #Caso queira verificar no console
     #puts "Dados apos a limpeza"
@@ -194,7 +206,17 @@ class RobotsController < ApplicationController
             humidity: chuva_final, position: confirmacao_comecou},
         ])
     sleep 0.3
-    flash[:notice] = " ........\"Total clean\" started !"
+
+    if chuva_final == 1
+      flash[:info] = "It was not possible to start the cleaning routine due to rain."
+    elsif confirmacao_comecou2 == 0
+      flash[:warning] = "It was not possible to start the cleaning routine. Please check the sensors."
+    elsif tensao_final <= 5 or temperatura_final >= 30.0 or reservatorio_final == 1
+      flash[:danger] = "Low battery or temperature too high or reservatory too low."
+    elsif confirmacao_comecou2 == 1 and tensao_final > 5 and temperatura_final < 30 and reservatorio_final != 1 and chuva_final != 1
+      flash[:success] = "Success: Clean started."
+    end
+
     redirect_to :back
   end
 
@@ -269,6 +291,7 @@ class RobotsController < ApplicationController
     chuva_final = $chuva.to_f
     #String no final
     confirmacao_comecou = $confirmacao_inicio
+    confirmacao_comecou2 = $confirmacao_inicio.to_f
 
     #Caso queira verificar no console
     #puts "Dados apos a limpeza"
@@ -286,7 +309,17 @@ class RobotsController < ApplicationController
             humidity: chuva_final, position: confirmacao_comecou},
         ])
     sleep 0.3
-    flash[:notice] = " ........\"Total clean\" started !"
+
+    if chuva_final == 1
+      flash[:info] = "It was not possible to start the cleaning routine due to rain."
+    elsif confirmacao_comecou2 == 0
+      flash[:warning] = "It was not possible to start the cleaning routine. Please check the sensors."
+    elsif tensao_final <= 5 or temperatura_final >= 30.0 or reservatorio_final == 1
+      flash[:danger] = "Low battery or temperature too high or reservatory too low."
+    elsif confirmacao_comecou2 == 1 and tensao_final > 5 and temperatura_final < 30 and reservatorio_final != 1 and chuva_final != 1
+      flash[:success] = "Success: Clean started."
+    end
+
     redirect_to :back
   end
 
